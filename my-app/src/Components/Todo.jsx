@@ -21,6 +21,14 @@ const Todo = () => {
     setTodo([...deleteItem])
   }
 
+  const EditTask = (index)=>{
+    const editItem = [...todo]
+    let userInput = prompt("Enter the Task")
+    editItem[index] =userInput 
+    setTodo([...editItem])
+
+  }
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -69,7 +77,11 @@ const Todo = () => {
               </th>
 
               <th scope="col" className="px-6 py-3">
-                Action
+                Delete
+              </th>
+
+              <th scope="col" className="px-6 py-3">
+                Edit
               </th>
             </tr>
           </thead>
@@ -81,11 +93,23 @@ const Todo = () => {
               <td className="px-6 py-4">
                 <button
                 type='button'
+                name='delete-button'
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   key={index}
                   onClick={deleteTask}
                 >
                   Delete
+                </button>
+              </td>
+              <td className="px-6 py-4">
+                <button
+                name='update-button'
+                type='button'
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  key={index}
+                  onClick={()=>{EditTask(index)}}
+                >
+                  Edit
                 </button>
               </td>
             </tr>
